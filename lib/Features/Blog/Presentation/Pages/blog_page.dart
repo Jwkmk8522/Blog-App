@@ -3,7 +3,6 @@ import 'package:blog_app/Core/Common/Widgets/loader.dart';
 import 'package:blog_app/Core/Themes/app_pallate.dart';
 import 'package:blog_app/Core/Utils/error_dialog.dart';
 import 'package:blog_app/Core/Utils/logout_dialog.dart';
-import 'package:blog_app/Features/Auth/Presentation/Pages/signin_page.dart';
 
 import 'package:blog_app/Features/Blog/Presentation/Pages/add_new_blog_page.dart';
 import 'package:blog_app/Features/Blog/Presentation/Widgets/blog_card.dart';
