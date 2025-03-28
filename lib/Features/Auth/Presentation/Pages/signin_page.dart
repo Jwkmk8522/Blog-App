@@ -5,6 +5,7 @@ import 'package:blog_app/Features/Auth/Presentation/Pages/signup_page.dart';
 import 'package:blog_app/Features/Auth/Presentation/Widgets/auth_feilds.dart';
 import 'package:blog_app/Features/Auth/Presentation/Widgets/auth_gradient_button.dart';
 import 'package:blog_app/Features/Auth/Presentation/bloc/auth_bloc.dart';
+import 'package:blog_app/Features/Blog/Presentation/Pages/blog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,11 +36,18 @@ class _SigninPageState extends State<SigninPage> {
           if (state is AuthFailure) {
             return showSnackbar(context, state.message);
           }
+          if (state is AuthSuccess) {
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => BlogPage()),
+              (route) => false,
+            );
+          }
         },
         builder: (context, state) {
           if (state is AuthLoading) {
             return Loader();
           }
+
           return Form(
             key: formKey,
             child: Column(

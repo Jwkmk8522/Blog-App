@@ -10,22 +10,39 @@ class AppTheme {
     scaffoldBackgroundColor: AppPallate.backgroundColor,
     textTheme: TextTheme(
       titleLarge: TextStyle(
-        fontSize: 52,
+        fontSize: 50,
         color: Colors.white,
         fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 30,
+        color: Colors.white,
+        fontWeight: FontWeight.w800,
       ),
       titleSmall: TextStyle(
         fontSize: 22,
         color: Colors.white,
         fontWeight: FontWeight.w600,
       ),
+      labelSmall: TextStyle(fontSize: 14, color: Colors.white),
+      labelLarge: TextStyle(fontSize: 14, color: AppPallate.greyColor),
+      labelMedium: TextStyle(fontSize: 18, color: Colors.white),
     ),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: EdgeInsets.all(20),
-
+      border: _border(),
+      errorBorder: _border(AppPallate.errorColor),
       enabledBorder: _border(),
       focusedBorder: _border(AppPallate.gradient1),
     ),
-    appBarTheme: AppBarTheme(backgroundColor: AppPallate.backgroundColor),
+
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppPallate.backgroundColor,
+      titleTextStyle: TextStyle(
+        color: AppPallate.whiteColor,
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
   );
 }

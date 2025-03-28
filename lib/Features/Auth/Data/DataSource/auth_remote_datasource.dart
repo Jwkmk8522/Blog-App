@@ -95,6 +95,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDatasource {
       }
 
       return UserModel.fromJson(res.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(e.message);
     } catch (e) {
       throw ServerException(e.toString());
     }
@@ -120,6 +122,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDatasource {
       }
 
       return UserModel.fromJson(res.user!.toJson());
+    } on AuthException catch (e) {
+      throw MyAuthException(e.message);
     } catch (e) {
       throw ServerException(e.toString());
     }

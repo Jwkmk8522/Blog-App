@@ -2,6 +2,7 @@ import 'package:blog_app/Core/Common/Cubits/AppUser/app_user_cubit.dart';
 import 'package:blog_app/Core/UseCAses/usecase.dart';
 import 'package:blog_app/Core/Common/Enteties/user_enteties.dart';
 import 'package:blog_app/Features/Auth/Domain/UseCases/current_user.dart';
+
 import 'package:blog_app/Features/Auth/Domain/UseCases/user_login.dart';
 import 'package:blog_app/Features/Auth/Domain/UseCases/user_signup.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserLogin _userLogin;
   final CurrentUser _currentUser;
   final AppUserCubit _appUserCubit;
+
   AuthBloc({
     required UserSignup userSignup,
     required UserLogin userLogin,
@@ -24,7 +26,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
        _userLogin = userLogin,
        _currentUser = currentUser,
        _appUserCubit = appUserCubit,
+
        super(AuthInitial()) {
+    on<AuthEvent>((_, emit) => emit(AuthLoading()));
     on<SignedUpButonPressed>(_onAuthSignUp);
     on<LogedInButonPressed>(_onAuthLogIn);
     on<AuthIsUserLoggedIn>(_onIsLoggedIn);
@@ -34,7 +38,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignedUpButonPressed event,
     Emitter<AuthState> emit,
   ) async {
-    emit(AuthLoading());
     // print('auth block is called');
     // print('auth block is called');
     // print('📧 Email: ${event.email}');
@@ -51,7 +54,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onAuthLogIn(LogedInButonPressed event, Emitter<AuthState> emit) async {
-    emit(AuthLoading());
     // print('auth block is called');
     // print('📧 Email: ${event.email}');
     // print('🔑 Password: ${event.password}');
@@ -64,7 +66,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onIsLoggedIn(AuthIsUserLoggedIn event, Emitter<AuthState> emit) async {
-    emit(AuthLoading());
     final res = await _currentUser(NoParams());
     res.fold(
       (l) => emit(AuthFailure(l.message)),
